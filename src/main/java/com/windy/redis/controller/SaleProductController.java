@@ -28,38 +28,38 @@ public class SaleProductController {
     /**
      * 销售商品，扣减库存
      */
-//    @RequestMapping("/sale")
-//    @ResponseBody
-//    public String sale(){
-//        int store=Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
-//        if(store>0){
-//            int resultStock=store-1;
-//            stringRedisTemplate.opsForValue().set("stock",resultStock+"");
-//            System.out.println("扣减成功，剩余库存"+resultStock);
-//        }else{
-//            System.out.println("扣减失败，库存不足");
-//        }
-//        return "success";
-//    }
+   @RequestMapping("/sale")
+   @ResponseBody
+   public String sale(){
+       int store=Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
+       if(store>0){
+           int resultStock=store-1;
+           stringRedisTemplate.opsForValue().set("stock",resultStock+"");
+           System.out.println("扣减成功，剩余库存"+resultStock);
+       }else{
+           System.out.println("扣减失败，库存不足");
+       }
+       return "success";
+   }
 
     /**
      * 销售商品，扣减库存（优化版本1：加锁）
      */
-//    @RequestMapping("/saleSyn")
-//    @ResponseBody
-//    public String saleSyn(){
-//        synchronized (this){
-//            int store=Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
-//            if(store>0){
-//                int resultStock=store-1;
-//                stringRedisTemplate.opsForValue().set("stock",resultStock+"");
-//                System.out.println("扣减成功，剩余库存"+resultStock);
-//            }else{
-//                System.out.println("扣减失败，库存不足");
-//            }
-//        }
-//        return "success";
-//    }
+   @RequestMapping("/saleSyn")
+   @ResponseBody
+   public String saleSyn(){
+       synchronized (this){
+           int store=Integer.parseInt(stringRedisTemplate.opsForValue().get("stock"));
+           if(store>0){
+               int resultStock=store-1;
+               stringRedisTemplate.opsForValue().set("stock",resultStock+"");
+               System.out.println("扣减成功，剩余库存"+resultStock);
+           }else{
+               System.out.println("扣减失败，库存不足");
+           }
+       }
+       return "success";
+   }
 
 
     /**
