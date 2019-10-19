@@ -19,7 +19,7 @@ public class RedisApplication {
     public Redisson redisson(){
         //此为单机模式
         Config config=new Config();
-        config.useSingleServer().setAddress("redis://120.78.169.196:6379").setDatabase(0);
+        config.useSingleServer().setAddress("redis://ip:6379").setDatabase(0);
         return (Redisson)Redisson.create(config);
     }
 }
